@@ -385,7 +385,7 @@
 #
 # Required
 #
- domain = "docker.localhost"
+ domain = "localhost"
 
 # Enable watch docker changes
 #
