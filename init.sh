@@ -1,6 +1,26 @@
 #!/bin/sh
-# RUN ONLY THE FIRST TIME
-docker build . -t pbc/traefik:latest
-docker run -d --restart=always -p 8080:8080 -p 80:80 -v /var/run/docker.sock:/var/run/docker.sock --name=traefik pbc/traefik
-docker network create traefik
-docker network connect traefik traefik
+
+CONTAINER=frontend
+FRONTENDRUNNING="true"
+
+RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER 2> /dev/null)
+
+if [ $? -eq 1 ]; then
+  echo "UNKNOWN - $CONTAINER does not exist."
+  FRONTENDRUNNING="false"
+
+elif [ "$RUNNING" == "false" ]; then
+  echo "CRITICAL - $CONTAINER is not running."
+  FRONTENDRUNNING="false"
+
+fi
+if  [ "$FRONTENDRUNNING" == "false" ]; then
+
+    docker build . -t manklar/traefikv2:latest
+
+    docker run -d -p 8080:8080 -p 80:80 --name=frontend  --restart=always -v /var/run/docker.sock:/var/run/docker.sock manklar/traefikv2
+
+    docker network create frontend
+
+    docker network connect frontend frontend
+fi
