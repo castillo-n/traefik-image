@@ -218,16 +218,16 @@
 # Default:
 # [entryPoints]
 #   [entryPoints.http]
-#   address = ":80"
+#   address = ":81"
 #
 # To redirect an http entrypoint to an https entrypoint (with SNI support):
 # [entryPoints]
 #   [entryPoints.http]
-#   address = ":80"
+#   address = ":81"
 #     [entryPoints.http.redirect]
 #       entryPoint = "https"
 #   [entryPoints.https]
-#   address = ":443"
+#   address = ":434"
 #     [entryPoints.https.tls]
 #       [[entryPoints.https.tls.certificates]]
 #       CertFile = "integration/fixtures/https/snitest.com.cert"
@@ -239,7 +239,7 @@
 # To redirect an entrypoint rewriting the URL:
 # [entryPoints]
 #   [entryPoints.http]
-#   address = ":80"
+#   address = ":81"
 #     [entryPoints.http.redirect]
 #       regex = "^http://localhost/(.*)"
 #       replacement = "http://mydomain/$1"
@@ -249,7 +249,7 @@
 # Passwords can be encoded in MD5, SHA1 and BCrypt: you can use htpasswd to generate those ones
 # [entryPoints]
 #   [entryPoints.http]
-#   address = ":80"
+#   address = ":81"
 #   [entryPoints.http.auth.basic]
 #   users = ["test:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/", "test2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0"]
 #
@@ -258,14 +258,14 @@
 # You can use htdigest to generate those ones
 # [entryPoints]
 #   [entryPoints.http]
-#   address = ":80"
+#   address = ":81"
 #   [entryPoints.http.auth.basic]
 #   users = ["test:traefik:a2688e031edb4be6a3797f3882655c05 ", "test2:traefik:518845800f9e2bfb1f1f740ec24f074e"]
 #
 # To specify an https entrypoint with a minimum TLS version, and specifying an array of cipher suites (from crypto/tls):
 # [entryPoints]
 #   [entryPoints.https]
-#   address = ":443"
+#   address = ":434"
 #     [entryPoints.https.tls]
 #     MinVersion = "VersionTLS12"
 #     CipherSuites = ["TLS_RSA_WITH_AES_256_GCM_SHA384"]
@@ -279,7 +279,7 @@
 # To enable compression support using gzip format:
 # [entryPoints]
 #   [entryPoints.http]
-#   address = ":80"
+#   address = ":81"
 #   compress = true
 
 # Enable retry sending request if network error
@@ -309,7 +309,7 @@
 #
 # Required
 #
- address = ":8080"
+ address = ":8180"
 
 # SSL certificate and key used
 #
@@ -497,11 +497,11 @@
 
 # Marathon server endpoint.
 # You can also specify multiple endpoint for Marathon:
-# endpoint := "http://10.241.1.71:8080,10.241.1.72:8080,10.241.1.73:8080"
+# endpoint := "http://10.241.1.71:8180,10.241.1.72:8180,10.241.1.73:8180"
 #
 # Required
 #
-# endpoint = "http://127.0.0.1:8080"
+# endpoint = "http://127.0.0.1:8180"
 
 # Enable watch Marathon changes
 #
@@ -585,7 +585,7 @@
 #
 # Required
 #
-# endpoint = "http://127.0.0.1:8080"
+# endpoint = "http://127.0.0.1:8180"
 
 # Enable watch Mesos changes
 #
@@ -663,7 +663,7 @@
 #
 # Optional
 #
-# endpoint = "http://localhost:8080"
+# endpoint = "http://localhost:8180"
 # namespaces = ["default"]
 #
 # See: http://kubernetes.io/docs/user-guide/labels/#list-and-watch-filtering
@@ -873,19 +873,19 @@
 #     [backends.backend1.circuitbreaker]
 #       expression = "NetworkErrorRatio() > 0.5"
 #     [backends.backend1.servers.server1]
-#     url = "http://172.17.0.2:80"
+#     url = "http://172.17.0.2:81"
 #     weight = 10
 #     [backends.backend1.servers.server2]
-#     url = "http://172.17.0.3:80"
+#     url = "http://172.17.0.3:81"
 #     weight = 1
 #   [backends.backend2]
 #     [backends.backend2.LoadBalancer]
 #       method = "drr"
 #     [backends.backend2.servers.server1]
-#     url = "http://172.17.0.4:80"
+#     url = "http://172.17.0.4:81"
 #     weight = 1
 #     [backends.backend2.servers.server2]
-#     url = "http://172.17.0.5:80"
+#     url = "http://172.17.0.5:81"
 #     weight = 2
 #
 # [frontends]
