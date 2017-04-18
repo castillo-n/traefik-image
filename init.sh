@@ -16,7 +16,7 @@ if [ "$RUNNING" == "false" ]; then
 fi
 if  [ "$FRONTENDRUNNING" == "false" ]; then
 
-    docker build . -t manklar/traefikv2:latest
+    docker build -t manklar/traefikv2:latest .
 
     docker run -d -p 8080:8080 -p 80:80 --name=frontend  --restart=always -v /var/run/docker.sock:/var/run/docker.sock manklar/traefikv2
 
