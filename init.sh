@@ -8,11 +8,11 @@ RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER 2> /dev/null
 if [ $? -eq 1 ]; then
   echo "UNKNOWN - $CONTAINER does not exist."
   FRONTENDRUNNING="false"
+fi
 
-elif [ "$RUNNING" == "false" ]; then
+if [ "$RUNNING" == "false" ]; then
   echo "CRITICAL - $CONTAINER is not running."
   FRONTENDRUNNING="false"
-
 fi
 if  [ "$FRONTENDRUNNING" == "false" ]; then
 
