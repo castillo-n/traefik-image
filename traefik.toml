@@ -903,3 +903,14 @@
 #   entrypoints = ["http", "https"] # overrides defaultEntryPoints
 #   backend = "backend2"
 #     rule = "Path: /test, /other"
+[entryPoints]
+   [entryPoints.http]
+   address = ":80"
+     [entryPoints.http.redirect]
+       entryPoint = "https"
+   [entryPoints.https]
+   address = ":443"
+     [entryPoints.https.tls]
+       [[entryPoints.https.tls.certificates]]
+       CertFile = "server.crt"
+       KeyFile = "server.key"
