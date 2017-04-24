@@ -74,7 +74,7 @@
 # Optional
 # Default: ["http"]
 #
-# defaultEntryPoints = ["http", "https"]
+defaultEntryPoints = ["http", "https"]
 
 # Constraints definition
 #
