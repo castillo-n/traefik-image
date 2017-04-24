@@ -18,7 +18,7 @@ if  [ "$FRONTENDRUNNING" == "false" ]; then
 
     docker build -t manklar/traefikv2:latest .
 
-    docker run -d -p 8080:8080 -p 80:80 --name=frontend  --restart=always -v /var/run/docker.sock:/var/run/docker.sock manklar/traefikv2
+    docker run -d -p 8080:8080 -p 80:80 -p 443:443 --name=frontend  --restart=always -v /var/run/docker.sock:/var/run/docker.sock manklar/traefikv2
 
     docker network create frontend
 
